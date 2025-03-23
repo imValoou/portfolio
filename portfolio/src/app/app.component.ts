@@ -18,6 +18,8 @@ export class AppComponent {
 	private translate = inject(TranslateService);
 
 	constructor() {
+		this.translate.addLangs(['en', 'fr']);
+		this.translate.setDefaultLang('en');
 		this.setCurrentLang();
 	}
 

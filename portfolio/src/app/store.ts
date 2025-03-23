@@ -1,23 +1,14 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { BehaviorSubject } from 'rxjs';
 
-type Store = {
-	lang: string;
-};
+import { inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
-const initialState: Store = {
-	lang: 'en',
-};
+export class Store {
+	translate = inject(TranslateService);
+	lang: BehaviorSubject<string> = new BehaviorSubject('en');
 
-export const Store = signalStore(
-	{ providedIn: 'root' },
-	withState(initialState),
-	withMethods((store) => ({
-		setLang(lang: string) {
-			patchState(store, () => ({
-				lang: lang,
-			}));
-			return lang;
-			console.log('Lang set to:', store.lang());
-		},
-	}))
-);
+	setLang(lang: string) {
+		this.lang.next(lang);
+		this.translate.use(lang);
+	}
+}

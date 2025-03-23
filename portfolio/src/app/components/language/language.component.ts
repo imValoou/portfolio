@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store } from '@app/store';
 
@@ -10,10 +10,10 @@ import { Store } from '@app/store';
 })
 export class LanguageComponent {
 	private store = inject(Store);
-	private location = inject(Location);
+	// private location = inject(Location);
 
 	selectLang(lang: string) {
 		this.store.setLang(lang);
-		this.location.back();
+		// this.location.back();
 	}
 }

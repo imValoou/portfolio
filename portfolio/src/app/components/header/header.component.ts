@@ -10,4 +10,16 @@ import { Store } from '@app/store';
 })
 export class HeaderComponent {
 	store = inject(Store);
+
+	currentLang = 'en';
+
+	constructor() {
+		this.store.lang.subscribe((lang) => {
+			this.currentLang = lang;
+		});
+	}
+
+	switchLang() {
+		this.store.setLang(this.currentLang === 'en' ? 'fr' : 'en');
+	}
 }

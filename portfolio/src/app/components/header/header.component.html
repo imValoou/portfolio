@@ -5,14 +5,12 @@
 	</a>
 
 	<div class="language">
-		<a routerLink="/language">
-			<div
-				class="selector"
-				[ngStyle]="{
-					'background-image':
-						'url(/images/' + store.lang() + '_flag.png)'
-				}"
-			></div>
-		</a>
+		<div
+			(click)="switchLang()"
+			class="selector"
+			[ngStyle]="{
+				'background-image': 'url(/images/' + currentLang + '_flag.png)'
+			}"
+		></div>
 	</div>
 </div>

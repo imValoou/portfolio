@@ -1,0 +1,18 @@
+<div class="header">
+	<a routerLink="/">
+		Valentin Benedet's
+		<span class="fancy">Portfolio</span>
+	</a>
+
+	<div class="language">
+		<a routerLink="/language">
+			<div
+				class="selector"
+				[ngStyle]="{
+					'background-image':
+						'url(/images/' + store.lang() + '_flag.png)'
+				}"
+			></div>
+		</a>
+	</div>
+</div>

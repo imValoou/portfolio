@@ -1,0 +1,40 @@
+.header {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: var(--font-size-larger);
+	color: var(--color-white);
+
+	position: relative;
+}
+
+.fancy {
+	font-family: "Ragnaroo";
+	font-weight: normal;
+	font-size: var(--font-size-largest);
+	margin: 0 5px;
+}
+
+.language {
+	position: absolute;
+	height: 100%;
+	right: 1rem;
+	width: 3.75rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	a {
+		box-shadow: rgba(203, 203, 203, 0.27) 0px 0px 0.25em,
+			rgba(179, 185, 197, 0.05) 0px 0.25em 1em;
+	}
+
+	.selector {
+		height: 1.875rem;
+		width: 3.125rem;
+		background-size: cover;
+	}
+}

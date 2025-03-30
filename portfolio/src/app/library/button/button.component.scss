@@ -1,0 +1,29 @@
+button {
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.125s ease-in-out;
+}
+
+.primary {
+  border: solid var(--color-primary) 2px;
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-light);
+  }
+}
+
+.accent {
+  border: solid 2px var(--color-accent);
+  background: linear-gradient(
+    120deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+
+  &:hover {
+    background: var(--color-light);
+  }
+}

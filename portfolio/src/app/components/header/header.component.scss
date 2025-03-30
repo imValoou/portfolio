@@ -1,0 +1,111 @@
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 1rem 2.5rem;
+
+  background-color: var(--gray-200);
+  transition: box-shadow 0.15s ease-in-out;
+
+  &.rounded {
+    border-radius: 0 0 var(--xl) var(--xl);
+    box-shadow: 0 4px 15px #959595c0;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 2rem;
+
+    .logo {
+      cursor: pointer;
+      height: 5rem;
+      aspect-ratio: 3;
+      background-image: url("/images/logo/logo-transparent.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .navigation {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: var(--m);
+
+      li {
+        text-transform: capitalize;
+
+        font-size: var(--l);
+
+        text-align: center;
+        height: 4em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .pagename {
+          display: inline-block;
+          height: 1.75em;
+          line-height: 1.75em;
+          padding-right: var(--m);
+
+          border-right: solid
+            color-mix(in srgb, var(--color-accent), transparent 80%) 1px;
+
+          .icon {
+            height: 1.2rem;
+          }
+
+          .text,
+          .icon {
+            display: inline-block;
+
+            transition: all 0.0725s ease-out;
+          }
+        }
+
+        &:last-child {
+          .pagename {
+            border: none;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .text,
+          .icon {
+            text-shadow: 0 0 1em var(--gray-300);
+            scale: 1.175;
+          }
+        }
+      }
+    }
+  }
+
+  .banner {
+    height: 0;
+    opacity: 0;
+    transition: all 0.175s ease-in-out;
+
+    position: relative;
+
+    &.show {
+      height: 100%;
+      opacity: 1;
+
+      .content {
+        margin-top: 2.5em;
+        margin-bottom: 2em;
+
+        h5 {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}

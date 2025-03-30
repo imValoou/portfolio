@@ -17,7 +17,10 @@
 
   // Sizes
   --header-height: 100px;
-  --home-banner-height: 500px;
+  --home-banner-height: 190px;
+
+  --space-vertical: 1rem;
+  --space-horizontal: 2.5rem;
 
   font-size: 16px;
   --xxs: 0.25rem;
@@ -86,4 +89,21 @@ p {
 
 li {
   list-style-type: none;
+}
+
+.logo-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.raise-on-hover {
+  position: relative;
+  top: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    top: -10px;
+    box-shadow: 0 6px 10px 2px #959595c0;
+  }
 }

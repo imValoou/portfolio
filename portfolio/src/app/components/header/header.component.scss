@@ -1,7 +1,8 @@
 .header {
   position: fixed;
+  z-index: 99;
   width: 100%;
-  padding: 1rem 2.5rem;
+  padding: var(--space-vertical) var(--space-horizontal);
 
   background-color: var(--gray-200);
   transition: box-shadow 0.15s ease-in-out;
@@ -17,6 +18,8 @@
     align-items: center;
 
     gap: 2rem;
+
+    height: var(--header-height);
 
     .logo {
       cursor: pointer;
@@ -95,12 +98,11 @@
     position: relative;
 
     &.show {
-      height: 100%;
+      height: var(--home-banner-height);
       opacity: 1;
 
       .content {
-        margin-top: 2.5em;
-        margin-bottom: 2em;
+        margin: var(--space-vertical) 0;
 
         h5 {
           margin-bottom: 15px;

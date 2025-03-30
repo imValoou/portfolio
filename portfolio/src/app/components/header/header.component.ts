@@ -26,7 +26,7 @@ export class HeaderComponent {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll() {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 100) {
       this.hasScrolled = true;
     } else {
       this.hasScrolled = false;

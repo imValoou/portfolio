@@ -41,15 +41,19 @@ export class HomeComponent {
   ];
 
   skills: { name: string; logo: string }[] = [
-    { name: 'html', logo: '/images/logo-html.png' },
-    { name: 'css', logo: '/images/logo-css.png' },
-    { name: 'js', logo: '/images/logo-js.png' },
-    { name: 'ts', logo: '/images/logo-ts.png' },
-    { name: 'firebase', logo: '/images/logo-firebase.png' },
-    { name: 'angular', logo: '/images/logo-angular.png' },
-    { name: 'react', logo: '/images/logo-react.png' },
-    { name: 'nuxt', logo: '/images/logo-nuxt.png' },
-    { name: 'php', logo: '/images/logo-php.png' },
-    { name: 'kotlin', logo: '/images/logo-kotlin.png' },
+    { name: 'html', logo: '/images/techstack/logo-html.png' },
+    { name: 'css', logo: '/images/techstack/logo-css.png' },
+    { name: 'js', logo: '/images/techstack/logo-js.png' },
+    { name: 'ts', logo: '/images/techstack/logo-ts.png' },
+    { name: 'firebase', logo: '/images/techstack/logo-firebase.png' },
+    { name: 'angular', logo: '/images/techstack/logo-angular.png' },
+    { name: 'react', logo: '/images/techstack/logo-react.png' },
+    { name: 'nuxt', logo: '/images/techstack/logo-nuxt.png' },
+    { name: 'php', logo: '/images/techstack/logo-php.png' },
+    { name: 'kotlin', logo: '/images/techstack/logo-kotlin.png' },
+    { name: 'copilot', logo: '/images/techstack/logo-copilot.png' },
+    { name: 'svelte', logo: '/images/techstack/logo-svelte.png' },
+    { name: 'tailwind css', logo: '/images/techstack/logo-tailwind.png' },
+    { name: 'bootstrap', logo: '/images/techstack/logo-bootstrap.png' },
   ];
 }

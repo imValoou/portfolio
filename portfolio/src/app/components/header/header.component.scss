@@ -6,6 +6,7 @@
 
   background-color: var(--gray-200);
   transition: box-shadow 0.15s ease-in-out;
+  overflow: hidden;
 
   &.rounded {
     border-radius: 0 0 var(--xl) var(--xl);

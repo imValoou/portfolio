@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Input } from '@angular/core';
 
 import { PfCommonModule } from '../../../common.module';
 import { ButtonComponent } from '../../library/button/button.component';
@@ -9,7 +9,7 @@ import { ButtonComponent } from '../../library/button/button.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   @Input() toggleBanner?: boolean;
   hasScrolled: boolean = false;
 
@@ -31,5 +31,10 @@ export class HeaderComponent {
     } else {
       this.hasScrolled = false;
     }
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof window !== 'undefined' && window?.scrollY > 100)
+      this.hasScrolled = true;
   }
 }

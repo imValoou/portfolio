@@ -1,0 +1,54 @@
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: var(--footer-height);
+
+  & > * {
+    width: 100%;
+  }
+
+  a {
+    color: var(--gray-800);
+    font-weight: bold;
+  }
+
+  .content {
+    padding: 1em 2em;
+    height: 100%;
+    background-color: var(--gray-300);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .contact {
+      p {
+        font-size: 1rem;
+      }
+
+      .linkedin {
+        height: 1em;
+      }
+    }
+
+    .menu {
+      p {
+        font-size: var(--s);
+      }
+    }
+  }
+
+  .credits {
+    color: var(--color-light);
+    background-color: var(--gray-700);
+    height: 4rem;
+    padding-right: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    h5 {
+      color: var(--color-light);
+    }
+  }
+}

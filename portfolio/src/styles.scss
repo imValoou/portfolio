@@ -18,6 +18,7 @@
   // Sizes
   --header-height: 100px;
   --home-banner-height: 190px;
+  --footer-height: 240px;
 
   --space-vertical: 1rem;
   --space-horizontal: 2.5rem;
@@ -58,16 +59,19 @@ a:hover {
 h1 {
   font-size: 4.21rem; /* 67.36px */
   line-height: 1em;
+  color: var(--gray-700);
 }
 
 h2 {
   font-size: 3.158rem; /* 50.56px */
   line-height: 1.4em;
+  color: var(--gray-700);
 }
 
 h3 {
   font-size: 2.369rem; /* 37.92px */
   line-height: 1.6em;
+  color: var(--gray-700);
 }
 
 h4 {

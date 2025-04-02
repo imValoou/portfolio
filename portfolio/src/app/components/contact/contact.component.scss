@@ -1,0 +1,36 @@
+.contact {
+  padding-top: calc(var(--header-height) + 2 * var(--space-vertical));
+  height: 100vh;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  text-shadow: 1px 1px 4px var(--color-light);
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background-image: url("/images/contact.jpg");
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px) grayscale(0.4);
+
+    z-index: -1;
+  }
+
+  h2 {
+    line-height: 1.8em;
+  }
+
+  .linkedin {
+    height: 1em;
+  }
+}

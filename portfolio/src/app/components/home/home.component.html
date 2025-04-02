@@ -1,15 +1,10 @@
-<pf-header #header [toggleBanner]="true"></pf-header>
 <div class="home">
   <!-- Hero Section -->
   <div class="hero">
-    <h1>Welcome to My Portfolio</h1>
+    <h2>Welcome to My Portfolio</h2>
     <p>
       Discover my projects, skills, and how I can help bring your ideas to life.
     </p>
-    <!-- <div class="cta-buttons">
-      <a href="#catalog" class="primary">View My Work</a>
-      <a href="#contact" class="secondary">Contact Me</a>
-    </div> -->
   </div>
 
   <!-- Catalog Section -->
@@ -21,13 +16,10 @@
         <div
           class="item-image"
           [style]="'background-image: url(' + project.image + ')'"
+          [title]="project.name"
         ></div>
-        <!-- <img src="/images/projects/freams.jpg" alt="Freams" /> -->
         <h3>{{ project.name }}</h3>
-        <p>
-          {{ project.description }}
-          An Airbnb-style app with a community focus, perfect for backpackers
-        </p>
+        <p>{{ project.description }}</p>
       </div>
       }
     </div>
@@ -35,20 +27,28 @@
 
   <!-- About Me Section -->
   <div class="about">
-    <h2>About Me</h2>
+    <h2>I Trust Them</h2>
     <div class="slider">
       <div class="group">
         @for(skill of skills; track skill.name) {
         <div
           class="skill"
           [style]="'background-image: url(' + skill.logo + ')'"
-        ></div>
+        >
+          <div class="tooltip">
+            <h4>{{ skill.name }}</h4>
+          </div>
+        </div>
         } @for(skill of skills; track skill.name) {
         <div
-          aria-hidden
+          aria-hidden="true"
           class="skill"
           [style]="'background-image: url(' + skill.logo + ')'"
-        ></div>
+        >
+          <div class="tooltip">
+            <h4>{{ skill.name }}</h4>
+          </div>
+        </div>
         }
       </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="content">
       <h2>Let's Work Together</h2>
       <p>Have a project in mind? Let's bring it to life!</p>
-      <pf-button text="Contact me on"></pf-button>
+      <pf-button text="Contact Me" class="primary"></pf-button>
     </div>
   </div>
 </div>

@@ -55,5 +55,7 @@ export class HomeComponent {
     { name: 'svelte', logo: '/images/techstack/logo-svelte.png' },
     { name: 'tailwind css', logo: '/images/techstack/logo-tailwind.png' },
     { name: 'bootstrap', logo: '/images/techstack/logo-bootstrap.png' },
+    { name: 'webgl', logo: '/images/techstack/logo-webgl.png' },
+    { name: '3js', logo: '/images/techstack/logo-3js.png' },
   ];
 }

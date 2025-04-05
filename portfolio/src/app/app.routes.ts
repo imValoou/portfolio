@@ -8,7 +8,14 @@ import { WhoAmIComponent } from './components/who-am-i/who-am-i.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'catalog', component: CatalogComponent },
+  {
+    path: 'catalog/:project-name',
+    component: CatalogComponent,
+  },
+  {
+    path: 'catalog',
+    component: CatalogComponent,
+  },
   { path: 'who-am-i', component: WhoAmIComponent },
   { path: 'cart', component: CartComponent },
   { path: 'contact', component: ContactComponent },

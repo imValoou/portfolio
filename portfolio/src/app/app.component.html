@@ -1,3 +1,5 @@
 <pf-header [toggleBanner]="toggleBanner" />
-<router-outlet />
+<div class="content" [ngClass]="{ 'banner-open': toggleBanner }">
+  <router-outlet />
+</div>
 <pf-footer />

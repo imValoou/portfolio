@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 
 import { PfCommonModule } from '../../../common.module';
 import { ButtonComponent } from '../../library/button/button.component';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'pf-home',
-  imports: [HeaderComponent, PfCommonModule, ButtonComponent],
+  imports: [PfCommonModule, ButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

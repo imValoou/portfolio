@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 99;
   width: 100%;
-  padding: var(--space-vertical) var(--space-horizontal);
+  padding: var(--padding-vertical) var(--padding-horizontal);
 
   background-color: var(--gray-200);
   transition: box-shadow 0.15s ease-in-out;
@@ -103,10 +103,10 @@
       opacity: 1;
 
       .content {
-        margin: var(--space-vertical) 0;
+        margin: var(--padding-vertical) 0;
 
         h5 {
-          margin-bottom: 15px;
+          margin-bottom: 1rem;
         }
       }
     }

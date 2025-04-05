@@ -16,12 +16,15 @@
   --gray-900: #12141f; /* Presque noir (idéal pour un fond) */
 
   // Sizes
+  --padding-vertical: 1rem;
+  --padding-horizontal: 2.5rem;
+
   --header-height: 100px;
   --home-banner-height: 190px;
+  --real-header-height: calc(
+    var(--header-height) + var(--padding-vertical) * 2
+  );
   --footer-height: 240px;
-
-  --space-vertical: 1rem;
-  --space-horizontal: 2.5rem;
 
   font-size: 16px;
   --xxs: 0.25rem;

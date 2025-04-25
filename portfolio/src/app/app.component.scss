@@ -1,9 +1,0 @@
-.content {
-  padding-top: var(--real-header-height);
-
-  &.banner-open {
-    padding-top: calc(
-      var(--real-header-height) + var(--home-banner-height) + 1rem
-    );
-  }
-}

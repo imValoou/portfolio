@@ -41,7 +41,7 @@ export default function Hero() {
 					<div className="h-full w-full rounded-lg bg-[url('/images/profile-picture.jpg')] bg-cover bg bg-center"></div>
 				</div>
 			</section>
-			<div className="absolute -left-1 -bottom-10 w-[105%] z-10 -rotate-2 ">
+			<div className="absolute -left-1 -bottom-10 w-[105%] z-10 -rotate-2 will-change-transform">
 				<Carousel items={mainSkills} separator="#" />
 				<Carousel items={secondarySkills} separator="#" size="sm" />
 			</div>

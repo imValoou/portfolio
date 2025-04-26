@@ -32,7 +32,7 @@ const packsRight = packs.slice(Math.floor(packs.length / 2), packs.length);
 export default function Packs() {
 	return (
 		<section className="primary relative">
-			<div className="absolute -left-1 -top-10 w-[105%] z-10 -rotate-2 ">
+			<div className="absolute -left-1 -top-10 w-[105%] z-10 -rotate-2 will-change-transform">
 				<Carousel
 					items={[
 						'Votre projet',

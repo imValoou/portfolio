@@ -26,7 +26,7 @@ const secondarySkills = [
 export default function Hero() {
 	return (
 		<div className="relative">
-			<section className="primary px-32 flex gap-36 justify-center items-center pt-32 pb-56">
+			<section className="primary px-6 md:px-32 flex flex-col md:flex-row gap-10 md:gap-36 justify-center items-center pt-24 md:pt-32 pb-32 md:pb-56">
 				<div className="flex items-start flex-col gap-4 ">
 					<h1 className="font-bold">Valentin</h1>
 					<h1 className="font-bold">Benedet</h1>

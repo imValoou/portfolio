@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+@tailwind utilities;
+
+:root {
+	--white: #f9f7ea;
+	--dark-green: #074734;
+	--light-green: #cef17b;
+}
+
+@theme inline {
+	--color-background: var(--white);
+	--color-foreground: var(--dark-green);
+}
+
+@layer utilities {
+	.primary {
+		background: var(--dark-green);
+		color: var(--white);
+	}
+
+	.secondary {
+		background: var(--light-green);
+		color: var(--dark-green);
+	}
+
+	.tertiary {
+		background: var(--white);
+		color: var(--dark-green);
+	}
+
+	.text-primary {
+		color: var(--dark-green);
+	}
+	.text-secondary {
+		color: var(--light-green);
+	}
+	.text-white {
+		color: var(--white);
+	}
+}
+
+body {
+	background: var(--color-background);
+	color: var(--color-foreground);
+
+	overflow-x: hidden;
+}
+
+h1 {
+	@apply text-8xl uppercase;
+}
+
+h2 {
+	@apply text-4xl uppercase;
+}
+
+h3 {
+	@apply text-3xl uppercase;
+}
+
+h4 {
+	@apply text-xl uppercase;
+}
+
+p {
+	@apply text-xl;
+}

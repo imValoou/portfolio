@@ -4,18 +4,21 @@ import ProjectCard from '@/components/project-card';
 const projects = [
 	{
 		name: 'Freams',
-		description: 'Description of project 1',
-		image: '/images/profile-picture.jpg',
+		description:
+			'Mise en relation logement et services pour backpackers et agriculteurs',
+		image: '/images/freams-project-card.png',
 	},
 	{
 		name: 'Calorie Tracker',
-		description: 'Description of project 2',
-		image: '/images/profile-picture.jpg',
+		description:
+			'Suivi précis des calories et macronutriments pour atteindre tes objectifs',
+		image: '/images/calorie-tracker-project-card.png',
 	},
 	{
 		name: 'Spotify Clone',
-		description: 'Description of project 3',
-		image: '/images/profile-picture.jpg',
+		description:
+			'Application musicale libre inspirée de Spotify via proxy sécurisé',
+		image: '/images/spotify-clone-project-card.png',
 	},
 ];
 

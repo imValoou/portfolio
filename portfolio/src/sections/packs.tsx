@@ -34,12 +34,7 @@ export default function Packs() {
 		<section className="primary relative">
 			<div className="absolute -left-1 -top-10 w-[105%] z-10 -rotate-2 will-change-transform">
 				<Carousel
-					items={[
-						'Votre projet',
-						'On en discute',
-						'Votre projet',
-						'On en discute',
-					]}
+					items={['Votre projet', 'On en discute']}
 					separator="*"
 				/>
 			</div>

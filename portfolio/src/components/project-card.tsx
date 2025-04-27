@@ -17,9 +17,9 @@ export default function ProjectCard({
 					backgroundImage: `url(${image})`,
 				}}
 			>
-				<div className="group-hover:flex bg-[#2F463FB0] p-6 w-full h-full  flex-col items-start justify-end hidden rounded-lg">
-					<h3 className="text-secondary">{name}</h3>
-					<p className="text-secondary">{description}</p>
+				<div className="group-hover:flex bg-[#2F463FB0] p-6 w-full h-full  flex-col items-start justify-end hidden rounded-lg text-secondary text-shadow-md text-shadow-gray-950">
+					<h3>{name}</h3>
+					<p>{description}</p>
 				</div>
 			</div>
 		</div>

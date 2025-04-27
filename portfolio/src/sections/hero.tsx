@@ -43,7 +43,12 @@ export default function Hero() {
 			</section>
 			<div className="absolute -left-1 -bottom-10 w-[105%] z-10 -rotate-2 will-change-transform">
 				<Carousel items={mainSkills} separator="#" />
-				<Carousel items={secondarySkills} separator="#" size="sm" />
+				<Carousel
+					items={secondarySkills}
+					separator="#"
+					size="sm"
+					speed="fast"
+				/>
 			</div>
 		</div>
 	);

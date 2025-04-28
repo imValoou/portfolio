@@ -20,7 +20,7 @@ export default function Carousel({
 	speed,
 }: carouselProps) {
 	return (
-		<div className="overflow-hidden flex bg-[var(--light-green)] first-of-type:border-t-8 border-[var(--dark-green)]">
+		<motion.div className="overflow-hidden flex bg-[var(--light-green)] first-of-type:border-t-8 border-[var(--dark-green)]">
 			<MotionConfig reducedMotion="user">
 				{Array.from({ length: 5 }).map((_, index) => (
 					<motion.div
@@ -32,7 +32,7 @@ export default function Carousel({
 								: items.length * 1.5,
 							repeat: Infinity,
 						}}
-						className="bg-[var(--light-green)] text-[var(--dark-green)] flex items-center gap-4 flex-row py-5 border-b-8 border-[var(--dark-green)] font-bold"
+						className="bg-[var(--light-green)] text-[var(--dark-green)] flex items-center gap-4 flex-row py-5 border-b-8 border-[var(--dark-green)] font-bold pr-3"
 					>
 						{items.map((item, index) => (
 							<div key={index} className="item text-nowrap">
@@ -65,6 +65,6 @@ export default function Carousel({
 					</motion.div>
 				))}
 			</MotionConfig>
-		</div>
+		</motion.div>
 	);
 }

@@ -24,6 +24,7 @@ export default function Carousel({
 			<MotionConfig reducedMotion="user">
 				{Array.from({ length: 5 }).map((_, index) => (
 					<motion.div
+						key={index}
 						animate={{ x: '-100%' }}
 						transition={{
 							ease: 'linear',

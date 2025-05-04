@@ -1,5 +1,6 @@
 import Button from '@/components/button';
 import Carousel from '@/components/carousel';
+import SquarePicture from '@/components/square-picture';
 
 const mainSkills = [
 	'Angular',
@@ -37,9 +38,7 @@ export default function Hero() {
 						type="secondary"
 					></Button>
 				</div>
-				<div className="secondary p-1.5 rounded-lg h-96 w-96">
-					<div className="h-full w-full rounded-lg bg-[url('/images/profile-picture.jpg')] bg-cover bg bg-center"></div>
-				</div>
+				<SquarePicture />
 			</section>
 			<div className="absolute -left-1 -bottom-10 w-[105%] z-10 -rotate-2 will-change-transform">
 				<Carousel items={mainSkills} separator="#" />

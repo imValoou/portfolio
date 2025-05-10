@@ -16,7 +16,7 @@ export default function Header() {
 						<li>Catalogue</li>
 					</Link>
 
-					<Link href="/about" className="cursor-pointer">
+					<Link href="/about-me" className="cursor-pointer">
 						<li>À propos</li>
 					</Link>
 

@@ -4,10 +4,9 @@ import SquarePicture from '@/components/square-picture';
 export default function About() {
 	return (
 		<div className="relative tertiary">
-			<div className="tertiary -rotate-2 h-20 absolute -top-10 -left-1  w-[105%] will-change-transform"></div>
-			<section className=" flex justify-center gap-28 items-center pt-32 pb-56">
+			<section className="flex justify-center gap-28 items-center">
 				<SquarePicture />
-				<div className="flex items-center flex-col gap-7 w-md text-justify">
+				<div className="flex items-center flex-col gap-7 w-lg text-justify">
 					<h2 className="font-bold">À propos</h2>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit.

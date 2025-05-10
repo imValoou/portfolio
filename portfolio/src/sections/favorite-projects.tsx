@@ -1,26 +1,8 @@
 import Button from '@/components/button';
 import ProjectCard from '@/components/project-card';
+import { Project, projects } from '@/data/projects';
 
-const projects = [
-	{
-		name: 'Freams',
-		description:
-			'Mise en relation logement et services pour backpackers et agriculteurs',
-		image: '/images/freams-project-card.png',
-	},
-	{
-		name: 'Calorie Tracker',
-		description:
-			'Suivi précis des calories et macronutriments pour atteindre tes objectifs',
-		image: '/images/calorie-tracker-project-card.png',
-	},
-	{
-		name: 'Spotify Clone',
-		description:
-			'Application musicale libre inspirée de Spotify via proxy sécurisé',
-		image: '/images/spotify-clone-project-card.png',
-	},
-];
+const typedProjects: Project[] = projects;
 
 export default function FavoriteProjects() {
 	return (

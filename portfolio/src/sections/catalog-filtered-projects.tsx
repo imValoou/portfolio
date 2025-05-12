@@ -1,32 +1,56 @@
 import Image from 'next/image';
 import { X } from 'phosphor-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/button';
 import ProjectCard from '@/components/project-card';
-import { Project, projects } from '@/data/projects';
+import firestoreService, { Project } from '@/data/firestore';
 
-const _techs: string[] = [
-	...new Set(
-		projects.flatMap((project) =>
-			project.stack.map((tech) => tech.toLowerCase())
-		)
-	),
-];
-const _filters: { name: string; isSelected: boolean }[] = _techs.map(
-	(tech) => ({
-		name: tech,
-		isSelected: false,
-	})
-);
-
-const _projects: Project[] = projects;
+let _techs: string[] = [];
+let _filters: { name: string; isSelected: boolean }[] = [];
+let _projects: Project[] = [];
 
 export default function CatalogFilteredProjects() {
-	const [filters, setFilters] = useState(_filters);
+	const [projects, setProjects] = useState<Project[]>([]);
+	const [filters, setFilters] = useState<
+		{ name: string; isSelected: boolean }[]
+	>([]);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(
 		null
 	);
+
+	useEffect(() => {
+		const loadProjects = async () => {
+			try {
+				const projectsData = await firestoreService.getAllProjects();
+				_projects = projectsData;
+				setProjects(projectsData);
+
+				// Mettre à jour les technologies uniques
+				_techs = [
+					...new Set(
+						projectsData.flatMap((project) =>
+							project.stack.map((tech: string) =>
+								tech.toLowerCase()
+							)
+						)
+					),
+				];
+
+				// Mettre à jour les filtres
+				_filters = _techs.map((tech) => ({
+					name: tech,
+					isSelected: false,
+				}));
+
+				setFilters(_filters);
+			} catch (error) {
+				console.error('Erreur lors du chargement des projets:', error);
+			}
+		};
+
+		loadProjects();
+	}, []);
 
 	const toggleFilter = (index: number) => {
 		const filtersCopy = [...filters];
@@ -47,9 +71,9 @@ export default function CatalogFilteredProjects() {
 			.filter((f) => f.isSelected)
 			.map((f) => f.name.toLowerCase());
 
-		if (activeFilters.length === 0) return _projects;
+		if (activeFilters.length === 0) return projects;
 
-		return _projects.filter((project) =>
+		return projects.filter((project) =>
 			project.stack.some((tech) =>
 				activeFilters.includes(tech.toLowerCase())
 			)
@@ -130,7 +154,7 @@ export default function CatalogFilteredProjects() {
 								</h4>
 								<ul className="flex items-center justify-start uppercase gap-5 flex-wrap">
 									{selectedProject.stack.map(
-										(tech, index) => (
+										(tech: string, index: number) => (
 											<li
 												key={index}
 												className={

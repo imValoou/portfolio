@@ -1,43 +1,33 @@
-const passions = [
-	{
-		img: '/images/video-games.png',
-		alt: 'Video games',
-		title: 'Video games',
-		label: 'VIDEO GAMES',
-	},
-	{
-		img: '/images/festivals.png',
-		alt: 'Festivals',
-		title: 'Festivals',
-		label: 'FESTIVALS',
-	},
-	{
-		img: '/images/painting.png',
-		alt: 'Painting',
-		title: 'Painting',
-		label: 'PAINTING',
-	},
-	{
-		img: '/images/vinyls.png',
-		alt: 'Vinyls',
-		title: 'Vinyls',
-		label: 'VINYL',
-	},
-	{
-		img: '/images/watchmaking.png',
-		alt: 'Watches',
-		title: 'Watches',
-		label: 'WATCHES',
-	},
-	{
-		img: '/images/film-photography.png',
-		alt: 'Film photography',
-		title: 'Film photography',
-		label: 'FILM PHOTOGRAPHY',
-	},
-];
+import { useEffect, useState } from 'react';
+
+import firestoreService from '@/data/firestore';
+
+import type { Passion } from '@/data/firestore';
 
 export default function Passions() {
+	const [passions, setPassions] = useState<Passion[]>([]);
+
+	useEffect(() => {
+		const loadPassions = async () => {
+			try {
+				const passionsData = await firestoreService.getAllPassions();
+				const passionsWithImages = await Promise.all(
+					passionsData.map(async (passion) => ({
+						...passion,
+						image: await firestoreService.getImageUrl(
+							passion.image
+						),
+					}))
+				);
+				setPassions(passionsWithImages);
+			} catch (error) {
+				console.error('Erreur lors du chargement des passions:', error);
+			}
+		};
+
+		loadPassions();
+	}, []);
+
 	return (
 		<section className="py-20">
 			<h2 className="text-3xl font-bold text-center mb-6 tracking-wide uppercase">
@@ -54,10 +44,13 @@ export default function Passions() {
 			</p>
 			<div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{passions.map((passion, idx) => (
-					<div className="relative w-full h-44 mb-4 flex items-center justify-center">
+					<div
+						key={idx}
+						className="relative w-full h-44 mb-4 flex items-center justify-center"
+					>
 						<img
-							src={passion.img}
-							alt={passion.alt}
+							src={passion.image}
+							alt={passion.name}
 							className="object-cover w-full h-full rounded-xl border-4 border-l-8 border-r-8 border-[var(--dark-green)]"
 							style={{ filter: 'brightness(0.75)' }}
 						/>
@@ -68,7 +61,7 @@ export default function Passions() {
 								letterSpacing: '2px',
 							}}
 						>
-							{passion.label}
+							{passion.name}
 						</h4>
 					</div>
 				))}

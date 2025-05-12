@@ -18,6 +18,7 @@ export default function SquarePicture(props: Props) {
 					height={height ?? 400}
 					width={width ?? 400}
 					className={`w-full ${className}`}
+					priority={true}
 				/>
 			</div>
 		</div>

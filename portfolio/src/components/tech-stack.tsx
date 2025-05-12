@@ -1,23 +1,27 @@
-const TECHNOLOGIES = [
-	{ name: 'TypeScript', color: 'primary', rotate: -3 },
-	{ name: 'Framer Motion', color: 'secondary', rotate: 6 },
-	{ name: 'Angular', color: 'primary', rotate: -2 },
-	{ name: 'OSM', color: 'secondary', rotate: 7 },
-	{ name: 'React', color: 'primary', rotate: 5 },
-	{ name: 'Kotlin', color: 'secondary', rotate: 6 },
-	{ name: 'Next.js', color: 'primary', rotate: -4 },
-	{ name: 'Sass', color: 'primary', rotate: 3 },
-	{ name: 'Nuxt', color: 'secondary', rotate: -7 },
-	{ name: 'Copilot', color: 'secondary', rotate: -3 },
-	{ name: 'Bootstrap', color: 'primary', rotate: -6 },
-	{ name: 'Svelte', color: 'secondary', rotate: 4 },
-	{ name: 'Flutter', color: 'secondary', rotate: 4 },
-	{ name: 'PHP', color: 'secondary', rotate: 3 },
-	{ name: 'Firebase', color: 'primary', rotate: -5 },
-	{ name: 'Tailwind CSS', color: 'primary', rotate: 2 },
-];
+import { useEffect, useState } from 'react';
+
+import firestoreService, { Skill } from '@/data/firestore';
 
 export default function TechStack() {
+	const [skills, setSkills] = useState<Skill[]>([]);
+
+	useEffect(() => {
+		const loadSkills = async () => {
+			try {
+				const skillsData = await firestoreService.getAllSkills();
+				setSkills(skillsData);
+			} catch (error) {
+				console.error('Erreur lors du chargement des skills:', error);
+			}
+		};
+
+		loadSkills();
+	}, []);
+
+	const getRotation = (min: number, max: number): number => {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	};
+
 	return (
 		<section className="flex justify-center gap-28 items-center">
 			<div className="flex items-center flex-col gap-7 w-lg text-justify">
@@ -36,22 +40,22 @@ export default function TechStack() {
 				</p>
 			</div>
 			<div className="flex flex-wrap justify-center gap-6 w-lg">
-				{TECHNOLOGIES.map((tech) => (
+				{skills.map((skill) => (
 					<div
-						key={tech.name}
-						className={`${tech.color} ${
-							tech.color === 'primary'
+						key={skill.name}
+						className={`${skill.category} ${
+							skill.category === 'primary'
 								? 'text-secondary scale-110'
 								: 'text-primary'
 						} px-6 py-3 rounded-md shadow-lg flex items-center justify-center`}
 						style={{
-							transform: `rotate(${tech.rotate}deg)`,
+							transform: `rotate(${getRotation(-7, 7)}deg)`,
 							minWidth: '120px',
 							fontSize: '1.2rem',
 						}}
 					>
 						<span className="uppercase font-semibold tracking-wide">
-							{tech.name}
+							{skill.name}
 						</span>
 					</div>
 				))}

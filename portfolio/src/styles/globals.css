@@ -39,6 +39,10 @@
 	}
 }
 
+.notranslate {
+	translate: no;
+}
+
 body {
 	background: var(--color-background);
 	color: var(--color-foreground);

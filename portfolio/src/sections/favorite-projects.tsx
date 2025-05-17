@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import Button from '@/components/button';
@@ -5,6 +6,7 @@ import ProjectCard from '@/components/project-card';
 import firestoreService, { Project } from '@/data/firestore';
 
 export default function FavoriteProjects() {
+	const t = useTranslations();
 	const [projects, setProjects] = useState<Project[]>([]);
 
 	useEffect(() => {
@@ -21,8 +23,18 @@ export default function FavoriteProjects() {
 	}, []);
 	return (
 		<section className="py-32 flex flex-col items-center justify-center gap-20">
-			<h2 className="font-bold">My favorite projects</h2>
-			<div className="flex items-center justify-center gap-20">
+			<h2 className="font-bold">{t('FavoriteProjects.Title')}</h2>
+			<div className="flex items-center justify-center gap-20 flex-wrap max-w-6xl">
+				{projects.length === 0 &&
+					Array.from({ length: 3 }).map((_, index) => (
+						<ProjectCard
+							key={`placeholder-${index}`}
+							isPlaceholder
+							name=""
+							description=""
+							image=""
+						/>
+					))}
 				{projects.map((project, index) => (
 					<ProjectCard
 						key={index}
@@ -33,7 +45,11 @@ export default function FavoriteProjects() {
 				))}
 			</div>
 
-			<Button text="Catalogue" path="/catalog" type="secondary"></Button>
+			<Button
+				text={t('Pages.Catalog')}
+				path="/catalog"
+				type="secondary"
+			></Button>
 		</section>
 	);
 }

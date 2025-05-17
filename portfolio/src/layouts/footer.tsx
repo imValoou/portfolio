@@ -1,9 +1,11 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Envelope, GithubLogo, LinkedinLogo } from 'phosphor-react';
 
 import AngledSeparator from '@/components/angled-separator';
 
 export default function Footer() {
+	const t = useTranslations();
 	return (
 		<footer className="primary relative">
 			<AngledSeparator color="primary" orientation="to-right" />
@@ -24,13 +26,19 @@ export default function Footer() {
 					<div className="flex items-center justify-start flex-col gap-12">
 						<div className="flex items-start justify-center gap-10">
 							<Link href="/catalog">
-								<p className="uppercase">Catalogue</p>
+								<p className="uppercase">
+									{t('Pages.Catalog')}
+								</p>
 							</Link>
 							<Link href="/about-me">
-								<p className="uppercase">About me</p>
+								<p className="uppercase">
+									{t('Pages.AboutMe')}
+								</p>
 							</Link>
 							<Link href="/contact">
-								<p className="uppercase">Contact</p>
+								<p className="uppercase">
+									{t('Pages.Contact')}
+								</p>
 							</Link>
 						</div>
 						<div className="flex items-start justify-center gap-10">
@@ -69,9 +77,10 @@ export default function Footer() {
 				</div>
 				<div className="w-full border-1 border-[var(--light-green)] my-14"></div>
 				<div className="flex justify-between">
-					<p className="">Mentions légales</p>
+					<p className="">{t('Footer.LegalMentions')}</p>
 					<p className="">
-						{new Date().getFullYear()} - Tous droits réservés
+						{new Date().getFullYear()} -{' '}
+						{t('Footer.AllRightsReserved')}
 					</p>
 				</div>
 			</div>

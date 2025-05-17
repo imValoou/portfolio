@@ -1,0 +1,69 @@
+{
+	"Pages": {
+		"Home": "Accueil",
+		"Catalog": "Catalogue",
+		"AboutMe": "À propos",
+		"Contact": "Contact",
+		"Cart": "Panier"
+	},
+	"Footer": {
+		"LegalMentions": "Mentions légales",
+		"AllRightsReserved": "Tous droits réservés"
+	},
+	"Hero": {
+		"Subtitle": "Développeur Web"
+	},
+	"FavoriteProjects": {
+		"Title": "Mes Projets",
+		"Projects": {
+			"Freams": {
+				"Title": "Freams",
+				"Description": "Mise en relation logement et services pour backpackers et agriculteurs"
+			},
+			"Portfolio": {
+				"Title": "Portfolio",
+				"Description": "Portfolio fullstack personnel pour présenter mes projets"
+			},
+			"CalorieTracker": {
+				"Title": "Calorie Tracker",
+				"Description": "Suivi précis des calories et macronutriments pour atteindre tes objectifs"
+			},
+			"Yfitops": {
+				"Title": "Spotify Clone",
+				"Description": "Application musicale libre inspirée de Spotify via proxy sécurisé"
+			}
+		}
+	},
+	"Packs": {
+		"Title": "Packs",
+		"Packs": [
+			{
+				"Title": "Pack Starter",
+				"Subtitle": "Site Vitrine",
+				"Description": "3 pages - Animations - Responsive design",
+				"Price": 1400
+			},
+			{
+				"Title": "Pack Essentiel",
+				"Subtitle": "Site Vitrine",
+				"Description": "10 pages - Animations - Responsive design",
+				"Price": 2000
+			},
+			{
+				"Title": "Pack Premium",
+				"Subtitle": "Site E-commerce",
+				"Description": "Pages produits - Panier - Animations - Responsive design",
+				"Price": 3000
+			},
+			{
+				"Title": "Pack Personnalisé",
+				"Subtitle": "Site sur mesure"
+			}
+		]
+	},
+	"About": {
+		"Title": "À propos",
+		"Description": "À propos",
+		"Button": "Contactez-moi"
+	}
+}

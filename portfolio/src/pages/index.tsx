@@ -3,7 +3,7 @@ import FavoriteProjects from '@/sections/favorite-projects';
 import Hero from '@/sections/hero';
 import Packs from '@/sections/packs';
 
-export default function HomePage() {
+export default function HomePage({ messages }: { messages: any }) {
 	return (
 		<>
 			<Hero />
@@ -15,4 +15,13 @@ export default function HomePage() {
 			<div className="h-56"></div>
 		</>
 	);
+}
+export async function getStaticProps(context: any) {
+	return {
+		props: {
+			messages: (
+				await import(`../../messages/${context.locale || 'fr'}.json`)
+			).default,
+		},
+	};
 }

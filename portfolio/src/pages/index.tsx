@@ -3,7 +3,7 @@ import FavoriteProjects from '@/sections/favorite-projects';
 import Hero from '@/sections/hero';
 import Packs from '@/sections/packs';
 
-export default function HomePage({ messages }: { messages: any }) {
+export default function HomePage() {
 	return (
 		<>
 			<Hero />

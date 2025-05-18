@@ -1,8 +1,10 @@
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import firestoreService, { Skill } from '@/data/firestore';
 
 export default function TechStack() {
+	const t = useTranslations();
 	const [skills, setSkills] = useState<Skill[]>([]);
 
 	useEffect(() => {
@@ -26,18 +28,9 @@ export default function TechStack() {
 		<section className="flex justify-center gap-28 items-center">
 			<div className="flex items-center flex-col gap-7 w-lg text-justify">
 				<h2 className="text-3xl font-bold mb-10 text-center">
-					Technologies utilisées
+					{t('AboutMe.Stack.Title')}
 				</h2>
-				<p className="text-justify">
-					As a full-stack developer, my primary expertise lies in
-					Angular and C#. However, I am also proficient in a variety
-					of other technologies. While I may not be an expert in all
-					of these, I am fully capable of using them in a professional
-					context. Many of the projects showcased in the Catalog page
-					were built using these technologies. I am always eager to
-					expand my skill set and learn new technologies, particularly
-					in the field of mobile development.
-				</p>
+				<p className="text-justify">{t('AboutMe.Stack.Description')}</p>
 			</div>
 			<div className="flex flex-wrap justify-center gap-6 w-lg">
 				{skills.map((skill) => (

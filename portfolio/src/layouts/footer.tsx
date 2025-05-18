@@ -15,13 +15,7 @@ export default function Footer() {
 						<h4 className="text-secondary uppercase font-semibold ml-4">
 							Valentin Benedet
 						</h4>
-						<p className="max-w-96">
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Duis sed ante metus. Integer ac nunc aliquam,
-							aliquet massa at, laoreet leo. Vivamus eu suscipit
-							tellus. Integer sollicitudin, dui sed varius
-							efficitur,
-						</p>
+						<p className="max-w-96">{t('Footer.Description')}</p>
 					</div>
 					<div className="flex items-center justify-start flex-col gap-12">
 						<div className="flex items-start justify-center gap-10">

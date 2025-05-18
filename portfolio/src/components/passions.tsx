@@ -1,10 +1,14 @@
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import firestoreService from '@/data/firestore';
 
 import type { Passion } from '@/data/firestore';
-
 export default function Passions() {
+	const t = useTranslations();
+	const router = useRouter();
+	const locale = router.locale ?? 'fr';
 	const [passions, setPassions] = useState<Passion[]>([]);
 
 	useEffect(() => {
@@ -31,16 +35,10 @@ export default function Passions() {
 	return (
 		<section className="py-20">
 			<h2 className="text-3xl font-bold text-center mb-6 tracking-wide uppercase">
-				MY PASSIONS
+				{t('AboutMe.Passions.Title')}
 			</h2>
 			<p className="max-w-3xl mx-auto text-center text-lg mb-12">
-				I am a tech enthusiast with a deep love for computer hardware.
-				When I'm not coding, you can find me painting miniature
-				figurines, capturing moments with film photography, or working
-				at music festivals. I am a fan of metal music, an avid gamer,
-				and someone who loves exploring new interests. My curiosity
-				knows no bounds, and I thrive on learning and experiencing new
-				things
+				{t('AboutMe.Passions.Description')}
 			</p>
 			<div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{passions.map((passion, idx) => (
@@ -50,7 +48,7 @@ export default function Passions() {
 					>
 						<img
 							src={passion.image}
-							alt={passion.name}
+							alt={t(passion.name[locale as 'en' | 'fr'])}
 							className="object-cover w-full h-full rounded-xl border-4 border-l-8 border-r-8 border-[var(--dark-green)]"
 							style={{ filter: 'brightness(0.75)' }}
 						/>
@@ -61,7 +59,7 @@ export default function Passions() {
 								letterSpacing: '2px',
 							}}
 						>
-							{passion.name}
+							{t(passion.name[locale as 'en' | 'fr'])}
 						</h4>
 					</div>
 				))}

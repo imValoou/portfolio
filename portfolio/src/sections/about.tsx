@@ -10,10 +10,10 @@ export default function About() {
 			<section className="flex justify-center gap-28 items-center">
 				<SquarePicture />
 				<div className="flex items-center flex-col gap-7 w-lg text-justify">
-					<h2 className="font-bold">{t('Pages.AboutMe')}</h2>
-					<p>{t('About.Description')}</p>
+					<h2 className="font-bold">{t('AboutMe.Title')}</h2>
+					<p>{t('AboutMe.Description')}</p>
 					<Button
-						text={t('About.Button')}
+						text={t('AboutMe.Button')}
 						path="/about"
 						type="primary"
 					></Button>

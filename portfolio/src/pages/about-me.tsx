@@ -21,3 +21,12 @@ export default function AboutMePage() {
 		</>
 	);
 }
+export async function getStaticProps(context: any) {
+	return {
+		props: {
+			messages: (
+				await import(`../../messages/${context.locale || 'fr'}.json`)
+			).default,
+		},
+	};
+}

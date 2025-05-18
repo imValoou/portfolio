@@ -1,4 +1,6 @@
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { X } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 
@@ -11,6 +13,9 @@ let _filters: { name: string; isSelected: boolean }[] = [];
 let _projects: Project[] = [];
 
 export default function CatalogFilteredProjects() {
+	const t = useTranslations();
+	const router = useRouter();
+	const locale = router.locale || 'fr';
 	const [projects, setProjects] = useState<Project[]>([]);
 	const [filters, setFilters] = useState<
 		{ name: string; isSelected: boolean }[]
@@ -101,6 +106,16 @@ export default function CatalogFilteredProjects() {
 				</ul>
 			</div>
 			<div className="grid grid-cols-3 gap-16">
+				{projects.length === 0 &&
+					Array.from({ length: 3 }).map((_, index) => (
+						<ProjectCard
+							key={`placeholder-${index}`}
+							isPlaceholder
+							name=""
+							description=""
+							image=""
+						/>
+					))}
 				{getFilteredProjects().map((project, index) => (
 					<div
 						key={index}
@@ -109,7 +124,9 @@ export default function CatalogFilteredProjects() {
 					>
 						<ProjectCard
 							name={project.name}
-							description={project.description}
+							description={
+								project.description[locale as 'en' | 'fr']
+							}
 							image={project.image}
 							hoverEnabled={false}
 						/>
@@ -134,7 +151,7 @@ export default function CatalogFilteredProjects() {
 							{selectedProject.name}
 						</h4>
 						<p className="text-center">
-							{selectedProject.description}
+							{selectedProject.description[locale as 'en' | 'fr']}
 						</p>
 					</div>
 
@@ -147,10 +164,16 @@ export default function CatalogFilteredProjects() {
 							height={400}
 						/>
 						<div className="flex flex-col gap-16 max-h-[520px] overflow-y-auto">
-							<p>{selectedProject.longDescription}</p>
+							<p>
+								{
+									selectedProject.longDescription[
+										locale as 'en' | 'fr'
+									]
+								}
+							</p>
 							<div>
 								<h4 className="uppercase mb-5">
-									Compétences :
+									{t('Projects.Title')}
 								</h4>
 								<ul className="flex items-center justify-start uppercase gap-5 flex-wrap">
 									{selectedProject.stack.map(

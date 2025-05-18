@@ -1,10 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-	collection,
-	Firestore,
-	getDocs,
-	getFirestore,
-} from 'firebase/firestore';
+import { collection, Firestore, getDocs, getFirestore } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -23,17 +18,17 @@ const storage = getStorage(app, 'gs://portfolio-24da8.firebasestorage.app');
 
 export type Passion = {
 	id: string;
-	name: string;
+	name: { en: string; fr: string };
 	image: string;
 };
 
 export type Project = {
 	id: string;
 	name: string;
-	description: string;
+	description: { en: string; fr: string };
+	longDescription: { en: string; fr: string };
 	image: string;
 	stack: string[];
-	longDescription: string;
 };
 
 export type Skill = {

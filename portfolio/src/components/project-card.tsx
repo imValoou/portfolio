@@ -32,7 +32,6 @@ export default function ProjectCard({
 	const [isImageLoading, setIsImageLoading] = useState(true);
 
 	useEffect(() => {
-		// Simuler un temps de chargement pour l'image
 		if (image) {
 			const img = new window.Image();
 			img.src = image;
@@ -52,7 +51,7 @@ export default function ProjectCard({
 			{isImageLoading ? (
 				<SkeletonLoader />
 			) : (
-				<>
+				<div className="flex justify-center items-center h-full">
 					{!isPlaceholder ? (
 						<Image
 							src={image}
@@ -75,17 +74,11 @@ export default function ProjectCard({
 											<p>{description}</p>
 										</div>
 									)}
-									{isPlaceholder && (
-										<div>
-											<h3>Project name</h3>
-											<p>Project description</p>
-										</div>
-									)}
 								</motion.div>
 							</div>
 						</div>
 					)}
-				</>
+				</div>
 			)}
 		</div>
 	);

@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 const journeyData = [
 	{
 		right: {
@@ -38,10 +40,11 @@ const journeyData = [
 ];
 
 export default function Journey() {
+	const t = useTranslations();
 	return (
 		<section className="py-20 bg-[var(--light-green)] rounded-xl mb-12">
 			<h2 className="text-3xl font-bold text-center mb-12 tracking-wide">
-				MY JOURNEY
+				{t('AboutMe.Journey.Title')}
 			</h2>
 			<div className="flex justify-center">
 				<div className="w-full max-w-4xl flex flex-col">

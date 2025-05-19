@@ -26,11 +26,17 @@ export default function TechStack() {
 
 	return (
 		<section className="flex justify-center gap-28 items-center">
-			<div className="flex items-center flex-col gap-7 w-lg text-justify">
+			<div className="flex items-center flex-col gap-7 w-lg">
 				<h2 className="text-3xl font-bold mb-10 text-center">
 					{t('AboutMe.Stack.Title')}
 				</h2>
-				<p className="text-justify">{t('AboutMe.Stack.Description')}</p>
+				<div>
+					{t.rich('AboutMe.Stack.Description', {
+						paragraph: (children) => (
+							<p className="mb-4">{children}</p>
+						),
+					})}
+				</div>
 			</div>
 			<div className="flex flex-wrap justify-center gap-6 w-lg">
 				{skills.map((skill) => (

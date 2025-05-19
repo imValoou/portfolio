@@ -30,17 +30,34 @@
 		"Citation": "My journey is as diverse as my passions",
 		"Stack": {
 			"Title": "Technologies used",
-			"Description": ""
+			"Description": "<paragraph>Passionate about web and mobile development, I am interested in everything related to the tech ecosystem, whether it's front-end, back-end, mobile, or infrastructure. I love to explore, test, compare, and continuously learn.</paragraph><paragraph>I work with modern technologies like React, Next.js, Tailwind CSS, TypeScript, Angular, and Flutter, but I am also comfortable with more traditional stacks such as PHP/MySQL, .NET/C#, or PostgreSQL. On the mobile and native side, I use Kotlin, and for tooling, I leverage Copilot, Firebase, and anything that helps me move faster without compromising quality.</paragraph><paragraph>I don’t limit myself to one framework or stack: I like to understand how things work under the hood, and I strive to be versatile, autonomous, and able to adapt to any environment.</paragraph>"
 		},
 		"Journey": {
 			"Title": "My journey",
-			"Baccalaureat": {
-				"Title": "Scientific Baccalaureate",
-				"Description": ""
+			"1": {
+				"title": "Scientific Baccalaureate",
+				"description": "2016 - University of Nice"
 			},
-			"DUT": "Computer Science DUT",
-			"FullstackDev": "Fullstack Web Developer",
-			"Parachutiste": "Parachutist Artilleryman"
+			"2": {
+				"title": "Computer Science DUT",
+				"description": "2018 - University of Nice"
+			},
+			"3": {
+				"title": "Fullstack Web Developer",
+				"description": "2018 to 2022 - Dietsmann Monaco"
+			},
+			"4": {
+				"title": "Fullstack Developer",
+				"description": "2022 to 2024 - Schneider Electric"
+			},
+			"5": {
+				"title": "Parachutist Artilleryman",
+				"description": "2024 to 2025 - French Army"
+			},
+			"6": {
+				"title": "Fullstack Web Developer",
+				"description": "2025 to present - Freelance"
+			}
 		},
 		"Passions": {
 			"Title": "My passions",
@@ -78,19 +95,19 @@
 			}
 		}
 	},
-  "ContactSection": {
-    "Title": "Contact me"
-  },
-  "ContactForm": {
-    "Name": "Name",
-    "Email": "Email",
-    "Message": "Message",
-    "Placeholder": {
-      "Name": "Your name",
-      "Email": "your.email@example.com",
-      "Message": "Your message..."
-    },
-    "Submit": "Send",
-    "Success": "Thank you for your message! I will get back to you as soon as possible."
-  }
+	"ContactSection": {
+		"Title": "Let's build together !"
+	},
+	"ContactForm": {
+		"Name": "Name",
+		"Email": "Email",
+		"Message": "Message",
+		"Placeholder": {
+			"Name": "Your name",
+			"Email": "your.email@example.com",
+			"Message": "Your message..."
+		},
+		"Submit": "Send",
+		"Success": "Thank you for your message! I will get back to you as soon as possible."
+	}
 }

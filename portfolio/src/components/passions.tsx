@@ -48,7 +48,7 @@ export default function Passions() {
 					>
 						<img
 							src={passion.image}
-							alt={t(passion.name[locale as 'en' | 'fr'])}
+							alt={passion.name.en}
 							className="object-cover w-full h-full rounded-xl border-4 border-l-8 border-r-8 border-[var(--dark-green)]"
 							style={{ filter: 'brightness(0.75)' }}
 						/>
@@ -59,7 +59,7 @@ export default function Passions() {
 								letterSpacing: '2px',
 							}}
 						>
-							{t(passion.name[locale as 'en' | 'fr'])}
+							{passion.name[locale as 'en' | 'fr']}
 						</h4>
 					</div>
 				))}

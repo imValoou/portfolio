@@ -30,17 +30,34 @@
 		"Citation": "Mon parcours est aussi diversifié que mes passions",
 		"Stack": {
 			"Title": "Technologies utilisées",
-			"Description": ""
+			"Description": "<paragraph>Passionné par le développement web et mobile, je m’intéresse à tout ce qui touche de près ou de loin à l’écosystème tech. Que ce soit pour le front, le back, le mobile ou l’infra, j’aime explorer, tester, comparer, et apprendre en continu.</paragraph><paragraph>Je travaille avec des technos modernes comme React, Next.js, Tailwind CSS, TypeScript, Angular, Flutter, mais je suis aussi à l’aise avec des stacks plus classiques comme PHP/MySQL, .NET/C#, ou encore PostgreSQL. Côté mobile et natif, je touche à Kotlin, et côté outillage, j’exploite Copilot, Firebase, et tout ce qui me permet d’aller plus vite sans négliger la qualité.</paragraph><paragraph>Je ne me limite pas à un framework ou une stack : j’aime comprendre comment ça marche sous le capot, et je fais en sorte d’être polyvalent, autonome et capable de m’adapter à n’importe quel environnement.</paragraph>"
 		},
 		"Journey": {
 			"Title": "Mon parcours",
-			"Baccalaureat": {
-				"Title": "Baccalauréat Scientifique",
-				"Description": ""
+			"1": {
+				"title": "Baccalauréat Scientifique",
+				"description": "2016 - Université de Nice"
 			},
-			"DUT": "DUT Informatique",
-			"FullstackDev": "Développeur Web Fullstack",
-			"Parachutiste": "Artilleur parachutiste"
+			"2": {
+				"title": "DUT Informatique",
+				"description": "2018 - Université de Nice"
+			},
+			"3": {
+				"title": "Développeur Web Fullstack",
+				"description": "2018 à 2022 - Dietsmann Monaco"
+			},
+			"4": {
+				"title": "Développeur Fullstack",
+				"description": "2022 à 2024 - Schneider Electric"
+			},
+			"5": {
+				"title": "Artilleur parachutiste",
+				"description": "2024 à 2025 - Armée de Terre"
+			},
+			"6": {
+				"title": "Développeur Web Fullstack",
+				"description": "2025 à aujourd'hui - Freelance"
+			}
 		},
 		"Passions": {
 			"Title": "Mes passions",
@@ -78,19 +95,19 @@
 			}
 		}
 	},
-  "ContactSection": {
-    "Title": "Contactez-moi"
-  },
-  "ContactForm": {
-    "Name": "Nom",
-    "Email": "Email",
-    "Message": "Message",
-    "Placeholder": {
-      "Name": "Votre nom",
-      "Email": "votre.email@example.com",
-      "Message": "Votre message..."
-    },
-    "Submit": "Envoyer",
-    "Success": "Merci pour votre message ! Je vous répondrai dès que possible."
-  }
+	"ContactSection": {
+		"Title": "Construisons ensemble !"
+	},
+	"ContactForm": {
+		"Name": "Nom",
+		"Email": "Email",
+		"Message": "Message",
+		"Placeholder": {
+			"Name": "Votre nom",
+			"Email": "votre.email@example.com",
+			"Message": "Votre message..."
+		},
+		"Submit": "Envoyer",
+		"Success": "Merci pour votre message ! Je vous répondrai dès que possible."
+	}
 }

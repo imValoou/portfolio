@@ -3,6 +3,7 @@ type buttonProps = {
 	path: string;
 	type: 'primary' | 'secondary' | 'tertiary';
 	size?: 'small' | 'medium' | 'large';
+	submit?: boolean;
 };
 
 const buttonClasses =
@@ -16,10 +17,19 @@ const typeClasses = {
 	tertiary: 'tertiary',
 };
 
-export default function Button({ text, path, type, size }: buttonProps) {
+export default function Button({
+	text,
+	path,
+	type,
+	size,
+	submit,
+}: buttonProps) {
 	return (
 		<a href={path}>
-			<button className={`${buttonClasses} ${typeClasses[type]} `}>
+			<button
+				type={submit ? 'submit' : 'button'}
+				className={`${buttonClasses} ${typeClasses[type]} `}
+			>
 				{size === 'small' && <span className="text-lg">{text}</span>}
 				{(size === undefined || size === 'medium') && (
 					<span>{text}</span>

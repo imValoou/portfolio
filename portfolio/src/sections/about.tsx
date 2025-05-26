@@ -11,7 +11,13 @@ export default function About() {
 				<SquarePicture />
 				<div className="flex items-center flex-col gap-7 w-lg text-justify">
 					<h2 className="font-bold">{t('AboutMe.Title')}</h2>
-					<p>{t('AboutMe.Description')}</p>
+					<p>
+						{t.rich('AboutMe.Description', {
+							paragraph: (children) => (
+								<p className="mb-4">{children}</p>
+							),
+						})}
+					</p>
 					<Button
 						text={t('AboutMe.Button')}
 						path="/about"

@@ -20,7 +20,8 @@ export default function Carousel({
 	speed,
 }: carouselProps) {
 	return (
-		<motion.div className="overflow-hidden flex bg-[var(--light-green)] first-of-type:border-t-8 border-[var(--dark-green)]">
+		<motion.div className="overflow-hidden flex bg-[var(--light-green)] first-of-type:border-t-8 border-[var(--dark-green)] blur-[0.01px]">
+			{/* DO NOT REMOVE BLUR - IT FIXES STAIR EFFECT ON MOZILLA THX TO RASTERIZATION */}
 			<MotionConfig reducedMotion="user">
 				{Array.from({ length: 5 }).map((_, index) => (
 					<motion.div

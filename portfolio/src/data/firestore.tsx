@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { collection, Firestore, getDocs, getFirestore } from 'firebase/firestore';
+import {
+	collection,
+	Firestore,
+	getDocs,
+	getFirestore,
+} from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -68,7 +73,7 @@ export class FirestoreService {
 					({
 						id: doc.id,
 						...doc.data(),
-					} as Passion)
+					}) as Passion
 			);
 			loading.passions = false;
 			return _passions;
@@ -83,7 +88,6 @@ export class FirestoreService {
 	}
 
 	async getAllProjects(): Promise<Project[]> {
-		console.log('Loading projects...');
 		if (_projects.length > 0) return _projects;
 		if (loading.projects) return [];
 		loading.projects = true;
@@ -103,20 +107,26 @@ export class FirestoreService {
 					stack: data.stack || [],
 					longDescription: data.longDescription || '',
 				};
-
-				if (project.image) {
-					try {
-						project.image = await this.getImageUrl(project.image);
-					} catch (error) {
-						console.error(
-							`Erreur lors du chargement de l'image pour le projet ${project.name}:`,
-							error
-						);
-					}
-				}
-
 				projects.push(project);
 			}
+
+			await Promise.all(
+				projects.map(async (project) => {
+					if (project.image) {
+						try {
+							project.image = await this.getImageUrl(
+								project.image
+							);
+						} catch (error) {
+							console.error(
+								`Erreur lors du chargement de l'image pour le projet ${project.name}:`,
+								error
+							);
+						}
+					}
+				})
+			);
+
 			_projects = projects;
 			loading.projects = false;
 			return _projects;

@@ -30,8 +30,6 @@ export default function CatalogFilteredProjects() {
 				const projectsData = await firestoreService.getAllProjects();
 				_projects = projectsData;
 				setProjects(projectsData);
-
-				// Mettre à jour les technologies uniques
 				_techs = [
 					...new Set(
 						projectsData.flatMap((project) =>
@@ -133,7 +131,11 @@ export default function CatalogFilteredProjects() {
 					</div>
 				))}
 			</div>
-			<Button text="On en discute" path="/contact" type="primary" />
+			<Button
+				text={`${t('Pages.Contact')}`}
+				path="/contact"
+				type="primary"
+			/>
 
 			{selectedProject !== null && (
 				<dialog

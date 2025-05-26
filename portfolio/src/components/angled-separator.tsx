@@ -15,8 +15,8 @@ export default function AngledSeparator({
 		<div
 			className={`
 				${color} ${
-				orientation === 'to-left' ? '-' : ''
-			}rotate-${angle} h-20 absolute -${position}-10 -left-[10px] 
+					orientation === 'to-left' ? '-' : ''
+				}rotate-${angle} h-20 absolute -${position}-10 -left-[10px] 
 				w-[105%] will-change-transform`}
 		></div>
 	);

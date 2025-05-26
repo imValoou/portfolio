@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -39,12 +40,16 @@ export default function FavoriteProjects() {
 						/>
 					))}
 				{projects.map((project, index) => (
-					<ProjectCard
-						key={index}
-						name={project.name}
-						description={project.description[locale as 'en' | 'fr']}
-						image={project.image}
-					/>
+					<Link href={`/catalog`}>
+						<ProjectCard
+							key={index}
+							name={project.name}
+							description={
+								project.description[locale as 'en' | 'fr']
+							}
+							image={project.image}
+						/>
+					</Link>
 				))}
 			</div>
 

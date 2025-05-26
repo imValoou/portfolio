@@ -20,12 +20,13 @@
 	},
 	"Catalog": {
 		"Title": "Catalogue",
-		"Subtitle": "Découvrez mes projets"
+		"Subtitle": "Découvrez mes projets",
+		"Button": "On en discute"
 	},
 	"AboutMe": {
 		"Title": "À propos",
 		"Subtitle": "De développeur web fullstack à artilleur parachutiste",
-		"Description": "À propos",
+		"Description": "<paragraph>Développeur fullstack passionné, je suis curieux de tout ce qui touche au web, au mobile et à l'UX.</paragraph><paragraph>J’aime créer des interfaces soignées, concevoir des applis utiles, et comprendre comment chaque couche fonctionne.</paragraph><paragraph>Je code autant par passion que par envie d’apporter quelque chose de concret. J'attache énormément d'importance à comprendre le besoin avant de chercher une solution.</paragraph><paragraph>Plutôt touche-à-tout, je jongle entre React, Next.js, Firebase, Flutter, .NET, PostgreSQL ou encore Tailwind — avec toujours le souci d’écrire du code propre et clair.</paragraph><paragraph>En dehors du code, je peins des figurines Warhammer, je collectionne des vinyles et des montres, je fais de la photo argentique et je bosse bénévolement chaque année au Hellfest.</paragraph><paragraph>Polyvalent, autonome, mais jamais loin d’un bon échange : je travaille sérieusement, mais sans me prendre trop au sérieux.</paragraph>",
 		"Button": "Contactez-moi",
 		"Citation": "Mon parcours est aussi diversifié que mes passions",
 		"Stack": {

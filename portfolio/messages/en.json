@@ -20,12 +20,13 @@
 	},
 	"Catalog": {
 		"Title": "Catalog",
-		"Subtitle": "Discover my projects"
+		"Subtitle": "Discover my projects",
+		"Button": "Let's discuss it"
 	},
 	"AboutMe": {
 		"Title": "About Me",
 		"Subtitle": "From full-stack dev to parachutist artilleryman",
-		"Description": "About Me",
+		"Description": "<paragraph>Passionate fullstack developer, I am curious about everything that touches web, mobile, and UX.</paragraph><paragraph>I love creating polished interfaces, designing useful apps, and understanding how each layer works.</paragraph><paragraph>I code as much out of passion as out of a desire to bring something concrete. I attach great importance to understanding the need before looking for a solution.</paragraph><paragraph>Rather a jack-of-all-trades, I juggle between React, Next.js, Firebase, Flutter, .NET, PostgreSQL, or even Tailwind — always with the concern of writing clean and clear code.</paragraph><paragraph>Outside of coding, I paint Warhammer miniatures, collect vinyls and watches, do analog photography, and work as a volunteer at Hellfest every year.</paragraph><paragraph>Versatile, autonomous, but never far from a good exchange: I work seriously, but without taking myself too seriously.</paragraph>",
 		"Button": "Contact Me",
 		"Citation": "My journey is as diverse as my passions",
 		"Stack": {

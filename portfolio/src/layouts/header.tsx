@@ -1,10 +1,12 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import LanguageSwitcher from '../components/language-switcher';
 
 export default function Header() {
 	const t = useTranslations();
+	const { pathname } = useRouter();
 	return (
 		<header
 			className="header sticky top-0 z-50 primary flex justify-between items-center
@@ -16,15 +18,15 @@ export default function Header() {
 			<nav>
 				<ul className="flex items-center justify-between uppercase gap-10">
 					<Link href="/catalog" className="cursor-pointer">
-						<li>{t('Pages.Catalog')}</li>
+						<li className={pathname === '/catalog' ? 'font-bold' : ''}>{t('Pages.Catalog')}</li>
 					</Link>
 
 					<Link href="/about-me" className="cursor-pointer">
-						<li>{t('Pages.AboutMe')}</li>
+						<li className={pathname === '/about-me' ? 'font-bold' : ''}>{t('Pages.AboutMe')}</li>
 					</Link>
 
 					<Link href="/contact" className="cursor-pointer">
-						<li>{t('Pages.Contact')}</li>
+						<li className={pathname === '/contact' ? 'font-bold' : ''}>{t('Pages.Contact')}</li>
 					</Link>
 
 					{/* <Link href="/cart" className="cursor-pointer">

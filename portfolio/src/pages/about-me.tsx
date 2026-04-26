@@ -4,7 +4,7 @@ import TechStack from '@/components/tech-stack';
 import About from '@/sections/about';
 import AboutMeBanner from '@/sections/about-me-banner';
 import Citation from '@/sections/citation';
-
+import { GetStaticPropsContext } from 'next';
 export default function AboutMePage() {
 	return (
 		<>
@@ -21,7 +21,7 @@ export default function AboutMePage() {
 		</>
 	);
 }
-export async function getStaticProps(context: any) {
+export async function getStaticProps(context: GetStaticPropsContext) {
 	return {
 		props: {
 			messages: (

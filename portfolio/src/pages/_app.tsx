@@ -17,18 +17,16 @@ const montserrat = Montserrat({
 export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	return (
-		<>
-			<main className={`${montserrat.className}`}>
-				<NextIntlClientProvider
-					locale={router.locale}
-					timeZone="Europe/Paris"
-					messages={pageProps.messages}
-				>
-					<Header />
-					<Component {...pageProps} />
-					<Footer />
-				</NextIntlClientProvider>
-			</main>
-		</>
+		<main className={`${montserrat.className}`}>
+			<NextIntlClientProvider
+				locale={router.locale}
+				timeZone="Europe/Paris"
+				messages={pageProps.messages}
+			>
+				<Header />
+				<Component {...pageProps} />
+				<Footer />
+			</NextIntlClientProvider>
+		</main>
 	);
 }

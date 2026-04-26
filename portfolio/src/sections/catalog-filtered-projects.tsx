@@ -8,10 +8,6 @@ import Button from '@/components/button';
 import ProjectCard from '@/components/project-card';
 import firestoreService, { Project } from '@/data/firestore';
 
-let _techs: string[] = [];
-let _filters: { name: string; isSelected: boolean }[] = [];
-let _projects: Project[] = [];
-
 export default function CatalogFilteredProjects() {
 	const t = useTranslations();
 	const router = useRouter();
@@ -25,45 +21,31 @@ export default function CatalogFilteredProjects() {
 	);
 
 	useEffect(() => {
-		const loadProjects = async () => {
-			try {
-				const projectsData = await firestoreService.getAllProjects();
-				_projects = projectsData;
+		firestoreService.getAllProjects()
+			.then((projectsData) => {
 				setProjects(projectsData);
-				_techs = [
+				const techs = [
 					...new Set(
 						projectsData.flatMap((project) =>
-							project.stack.map((tech: string) =>
-								tech.toLowerCase()
-							)
+							project.stack.map((tech: string) => tech.toLowerCase())
 						)
 					),
 				];
-
-				// Mettre à jour les filtres
-				_filters = _techs.map((tech) => ({
-					name: tech,
-					isSelected: false,
-				}));
-
-				setFilters(_filters);
-			} catch (error) {
-				console.error('Erreur lors du chargement des projets:', error);
-			}
-		};
-
-		loadProjects();
+				setFilters(techs.map((tech) => ({ name: tech, isSelected: false })));
+			})
+			.catch((error) => console.error('Erreur lors du chargement des projets:', error));
 	}, []);
 
 	const toggleFilter = (index: number) => {
-		const filtersCopy = [...filters];
-		filtersCopy[index].isSelected = !filtersCopy[index].isSelected;
-		setFilters(filtersCopy);
+		setFilters((prev) =>
+			prev.map((f, i) =>
+				i === index ? { ...f, isSelected: !f.isSelected } : f
+			)
+		);
 	};
 
 	const selectProject = (project: Project | null) => {
 		setSelectedProject(project);
-		console.log(project);
 		project !== null
 			? document.body.classList.add('overflow-hidden')
 			: document.body.classList.remove('overflow-hidden');
@@ -90,7 +72,7 @@ export default function CatalogFilteredProjects() {
 				<ul className="flex items-center justify-stretch flex-wrap uppercase gap-5">
 					{filters.map((filter, index) => (
 						<li
-							key={index}
+							key={filter.name}
 							className={`border-1 rounded-sm px-6 py-1 transition-colors duration-200 ease-in-out cursor-pointer ${
 								filter.isSelected
 									? 'primary'
@@ -114,9 +96,9 @@ export default function CatalogFilteredProjects() {
 							image=""
 						/>
 					))}
-				{getFilteredProjects().map((project, index) => (
+				{getFilteredProjects().map((project) => (
 					<div
-						key={index}
+						key={project.id}
 						className="flex flex-col items-start justify-start gap-4"
 						onClick={() => selectProject(project)}
 					>
@@ -132,7 +114,7 @@ export default function CatalogFilteredProjects() {
 				))}
 			</div>
 			<Button
-				text={`${t('Pages.Contact')}`}
+				text={t('Pages.Contact')}
 				path="/contact"
 				type="primary"
 			/>
@@ -179,12 +161,10 @@ export default function CatalogFilteredProjects() {
 								</h4>
 								<ul className="flex items-center justify-start uppercase gap-5 flex-wrap">
 									{selectedProject.stack.map(
-										(tech: string, index: number) => (
+										(tech, index) => (
 											<li
 												key={index}
-												className={
-													'rounded-sm px-6 py-1 primary'
-												}
+												className="rounded-sm px-6 py-1 primary"
 											>
 												{tech}
 											</li>

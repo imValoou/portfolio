@@ -1,3 +1,4 @@
+import { GetStaticPropsContext } from 'next';
 import ContactSection from '../sections/contact';
 
 const ContactPage = () => {
@@ -11,7 +12,7 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-export async function getStaticProps(context: any) {
+export async function getStaticProps(context: GetStaticPropsContext) {
 	return {
 		props: {
 			messages: (

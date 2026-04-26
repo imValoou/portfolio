@@ -5,7 +5,7 @@ import {
 	getDocs,
 	getFirestore,
 } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref } from 'firebase/storage';
+import { FirebaseStorage, getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -41,131 +41,101 @@ export type Skill = {
 	category: string;
 };
 
-let _passions: Passion[] = [];
-let _projects: Project[] = [];
-let _skills: Skill[] = [];
-
-const loading = {
-	projects: false,
-	passions: false,
-	skills: false,
-};
-
 export class FirestoreService {
 	private db: Firestore;
-	private storage: any;
+	private storage: FirebaseStorage;
+	private passionsPromise: Promise<Passion[]> | null = null;
+	private projectsPromise: Promise<Project[]> | null = null;
+	private skillsPromise: Promise<Skill[]> | null = null;
 
 	constructor() {
 		this.db = db;
 		this.storage = storage;
 	}
 
-	async getAllPassions(): Promise<Passion[]> {
-		if (_passions.length > 0) return _passions;
-		if (loading.passions) return [];
-		loading.passions = true;
-		try {
-			const querySnapshot = await getDocs(
-				collection(this.db, 'passions')
-			);
-			_passions = querySnapshot.docs.map(
-				(doc) =>
-					({
-						id: doc.id,
-						...doc.data(),
-					}) as Passion
-			);
-			loading.passions = false;
-			return _passions;
-		} catch (error) {
-			console.error(
-				'Erreur lors de la récupération des passions:',
-				error
-			);
-			loading.passions = false;
-			throw error;
+	getAllPassions(): Promise<Passion[]> {
+		if (!this.passionsPromise) {
+			this.passionsPromise = this._fetchPassions().catch((err) => {
+				this.passionsPromise = null;
+				throw err;
+			});
 		}
+		return this.passionsPromise;
 	}
 
-	async getAllProjects(): Promise<Project[]> {
-		if (_projects.length > 0) return _projects;
-		if (loading.projects) return [];
-		loading.projects = true;
-		try {
-			const querySnapshot = await getDocs(
-				collection(this.db, 'projects')
-			);
-			const projects: Project[] = [];
+	private async _fetchPassions(): Promise<Passion[]> {
+		const querySnapshot = await getDocs(collection(this.db, 'passions'));
+		const passions = querySnapshot.docs.map(
+			(doc) => ({ id: doc.id, ...doc.data() }) as Passion
+		);
+		await Promise.all(
+			passions.map(async (passion) => {
+				if (passion.image) {
+					passion.image = await this.getImageUrl(passion.image);
+				}
+			})
+		);
+		return passions;
+	}
 
-			for (const doc of querySnapshot.docs) {
-				const data = doc.data();
-				const project: Project = {
-					id: doc.id,
-					name: data.name || '',
-					description: data.description || '',
-					image: data.image || '',
-					stack: data.stack || [],
-					longDescription: data.longDescription || '',
-				};
-				projects.push(project);
-			}
+	getAllProjects(): Promise<Project[]> {
+		if (!this.projectsPromise) {
+			this.projectsPromise = this._fetchProjects().catch((err) => {
+				this.projectsPromise = null;
+				throw err;
+			});
+		}
+		return this.projectsPromise;
+	}
 
-			await Promise.all(
-				projects.map(async (project) => {
-					if (project.image) {
-						try {
-							project.image = await this.getImageUrl(
-								project.image
-							);
-						} catch (error) {
-							console.error(
-								`Erreur lors du chargement de l'image pour le projet ${project.name}:`,
-								error
-							);
-						}
+	private async _fetchProjects(): Promise<Project[]> {
+		const querySnapshot = await getDocs(collection(this.db, 'projects'));
+		const projects: Project[] = querySnapshot.docs.map((doc) => {
+			const data = doc.data();
+			return {
+				id: doc.id,
+				name: data.name || '',
+				description: data.description || '',
+				image: data.image || '',
+				stack: data.stack || [],
+				longDescription: data.longDescription || '',
+			};
+		});
+		await Promise.all(
+			projects.map(async (project) => {
+				if (project.image) {
+					try {
+						project.image = await this.getImageUrl(project.image);
+					} catch (error) {
+						console.error(
+							`Erreur lors du chargement de l'image pour le projet ${project.name}:`,
+							error
+						);
 					}
-				})
-			);
-
-			_projects = projects;
-			loading.projects = false;
-			return _projects;
-		} catch (error) {
-			console.error('Erreur lors de la récupération des projets:', error);
-			loading.projects = false;
-			throw error;
-		}
+				}
+			})
+		);
+		return projects;
 	}
 
-	async getAllSkills(): Promise<Skill[]> {
-		if (_skills.length > 0) return _skills;
-		if (loading.skills) return [];
-		loading.skills = true;
-		try {
-			const querySnapshot = await getDocs(collection(this.db, 'skills'));
-			_skills = querySnapshot.docs.map((doc) => doc.data() as Skill);
-			loading.skills = false;
-			return _skills;
-		} catch (error) {
-			console.error(
-				'Erreur lors de la récupération des compétences:',
-				error
-			);
-			loading.skills = false;
-			throw error;
+	getAllSkills(): Promise<Skill[]> {
+		if (!this.skillsPromise) {
+			this.skillsPromise = this._fetchSkills().catch((err) => {
+				this.skillsPromise = null;
+				throw err;
+			});
 		}
+		return this.skillsPromise;
+	}
+
+	private async _fetchSkills(): Promise<Skill[]> {
+		const querySnapshot = await getDocs(collection(this.db, 'skills'));
+		return querySnapshot.docs.map((doc) => doc.data() as Skill);
 	}
 
 	async getImageUrl(imagePath: string): Promise<string> {
-		console.log(imagePath);
-		try {
-			const imageRef = ref(this.storage, imagePath);
-			const url = await getDownloadURL(imageRef);
-			return url;
-		} catch (error) {
-			console.error("Erreur lors de la récupération de l'image:", error);
-			throw error;
-		}
+		const imageRef = ref(this.storage, imagePath);
+		return getDownloadURL(imageRef);
 	}
 }
 

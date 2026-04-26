@@ -1,24 +1,11 @@
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
 
-import firestoreService, { Skill } from '@/data/firestore';
+import { type Skill } from '@/data/firestore';
 
-export default function TechStack() {
+type Props = { skills: Skill[] };
+
+export default function TechStack({ skills }: Props) {
 	const t = useTranslations();
-	const [skills, setSkills] = useState<Skill[]>([]);
-
-	useEffect(() => {
-		const loadSkills = async () => {
-			try {
-				const skillsData = await firestoreService.getAllSkills();
-				setSkills(skillsData);
-			} catch (error) {
-				console.error('Erreur lors du chargement des skills:', error);
-			}
-		};
-
-		loadSkills();
-	}, []);
 
 	const getRotation = (min: number, max: number): number => {
 		return Math.floor(Math.random() * (max - min + 1)) + min;

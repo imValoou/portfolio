@@ -2,39 +2,41 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { X } from 'phosphor-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 import Button from '@/components/button';
 import ProjectCard from '@/components/project-card';
-import firestoreService, { Project } from '@/data/firestore';
+import { Project } from '@/data/firestore';
 
-export default function CatalogFilteredProjects() {
+type Props = { projects: Project[] };
+
+export default function CatalogFilteredProjects({ projects }: Props) {
 	const t = useTranslations();
 	const router = useRouter();
 	const locale = router.locale || 'fr';
-	const [projects, setProjects] = useState<Project[]>([]);
-	const [filters, setFilters] = useState<
-		{ name: string; isSelected: boolean }[]
-	>([]);
-	const [selectedProject, setSelectedProject] = useState<Project | null>(
-		null
+
+	const [filters, setFilters] = useState(() =>
+		[...new Set(projects.flatMap((p) => p.stack.map((t) => t.toLowerCase())))]
+			.map((name) => ({ name, isSelected: false }))
 	);
+	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+	const selectProject = (project: Project | null) => {
+		setSelectedProject(project);
+		if (project !== null) {
+			document.body.classList.add('overflow-hidden');
+		} else {
+			document.body.classList.remove('overflow-hidden');
+		}
+	};
 
 	useEffect(() => {
-		firestoreService.getAllProjects()
-			.then((projectsData) => {
-				setProjects(projectsData);
-				const techs = [
-					...new Set(
-						projectsData.flatMap((project) =>
-							project.stack.map((tech: string) => tech.toLowerCase())
-						)
-					),
-				];
-				setFilters(techs.map((tech) => ({ name: tech, isSelected: false })));
-			})
-			.catch((error) => console.error('Erreur lors du chargement des projets:', error));
-	}, []);
+		const projectId = router.query.project as string | undefined;
+		if (!projectId) return;
+		const target = projects.find((p) => p.id === projectId);
+		if (target) selectProject(target);
+	}, [router.query.project]);
 
 	const toggleFilter = (index: number) => {
 		setFilters((prev) =>
@@ -44,17 +46,10 @@ export default function CatalogFilteredProjects() {
 		);
 	};
 
-	const selectProject = (project: Project | null) => {
-		setSelectedProject(project);
-		project !== null
-			? document.body.classList.add('overflow-hidden')
-			: document.body.classList.remove('overflow-hidden');
-	};
-
-	const getFilteredProjects = () => {
+	const filteredProjects = (() => {
 		const activeFilters = filters
 			.filter((f) => f.isSelected)
-			.map((f) => f.name.toLowerCase());
+			.map((f) => f.name);
 
 		if (activeFilters.length === 0) return projects;
 
@@ -63,11 +58,23 @@ export default function CatalogFilteredProjects() {
 				activeFilters.includes(tech.toLowerCase())
 			)
 		);
-	};
+	})();
 
 	return (
 		<section className="tertiary flex flex-col items-center justify-center gap-10 py-32 max-w-6xl m-auto">
-			<div className="flex flex-col items-start justify-center gap-4 ">
+			<div className="hidden" aria-hidden="true">
+				{projects.map((project) => (
+					<Image
+						key={project.id}
+						src={project.image}
+						alt=""
+						width={400}
+						height={400}
+						priority
+					/>
+				))}
+			</div>
+			<div className="flex flex-col items-start justify-center gap-4">
 				<h4>Filtres :</h4>
 				<ul className="flex items-center justify-stretch flex-wrap uppercase gap-5">
 					{filters.map((filter, index) => (
@@ -86,17 +93,7 @@ export default function CatalogFilteredProjects() {
 				</ul>
 			</div>
 			<div className="grid grid-cols-3 gap-16">
-				{projects.length === 0 &&
-					Array.from({ length: 3 }).map((_, index) => (
-						<ProjectCard
-							key={`placeholder-${index}`}
-							isPlaceholder
-							name=""
-							description=""
-							image=""
-						/>
-					))}
-				{getFilteredProjects().map((project) => (
+				{filteredProjects.map((project) => (
 					<div
 						key={project.id}
 						className="flex flex-col items-start justify-start gap-4"
@@ -104,24 +101,23 @@ export default function CatalogFilteredProjects() {
 					>
 						<ProjectCard
 							name={project.name}
-							description={
-								project.description[locale as 'en' | 'fr']
-							}
+							description={project.description[locale as 'en' | 'fr']}
 							image={project.image}
 							hoverEnabled={false}
 						/>
 					</div>
 				))}
 			</div>
-			<Button
-				text={t('Pages.Contact')}
-				path="/contact"
-				type="primary"
-			/>
+			<Button text={t('Pages.Contact')} path="/contact" type="primary" />
 
-			{selectedProject !== null && (
-				<dialog
+			<AnimatePresence>
+				{selectedProject !== null && (
+				<motion.dialog
 					open
+					initial={{ opacity: 0, y: 40 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: 40 }}
+					transition={{ duration: 0.3, ease: 'easeOut' }}
 					className="fixed max-w-[850px] w-4/5 min-w-3xl overflow-y-auto inset-0 z-10 m-auto p-10 border-4 border-[var(--dark-green)] rounded-lg tertiary flex flex-col items-center justify-center gap-10 shadow-2xl shadow-white"
 				>
 					<X
@@ -131,9 +127,7 @@ export default function CatalogFilteredProjects() {
 						onClick={() => selectProject(null)}
 					/>
 					<div>
-						<h4 className="font-bold text-center">
-							{selectedProject.name}
-						</h4>
+						<h4 className="font-bold text-center">{selectedProject.name}</h4>
 						<p className="text-center">
 							{selectedProject.description[locale as 'en' | 'fr']}
 						</p>
@@ -148,34 +142,22 @@ export default function CatalogFilteredProjects() {
 							height={400}
 						/>
 						<div className="flex flex-col gap-16 max-h-[520px] overflow-y-auto">
-							<p>
-								{
-									selectedProject.longDescription[
-										locale as 'en' | 'fr'
-									]
-								}
-							</p>
+							<p>{selectedProject.longDescription[locale as 'en' | 'fr']}</p>
 							<div>
-								<h4 className="uppercase mb-5">
-									{t('Projects.Title')}
-								</h4>
+								<h4 className="uppercase mb-5">{t('Projects.Title')}</h4>
 								<ul className="flex items-center justify-start uppercase gap-5 flex-wrap">
-									{selectedProject.stack.map(
-										(tech, index) => (
-											<li
-												key={index}
-												className="rounded-sm px-6 py-1 primary"
-											>
-												{tech}
-											</li>
-										)
-									)}
+									{selectedProject.stack.map((tech, index) => (
+										<li key={index} className="rounded-sm px-6 py-1 primary">
+											{tech}
+										</li>
+									))}
 								</ul>
 							</div>
 						</div>
 					</div>
-				</dialog>
-			)}
+				</motion.dialog>
+				)}
+			</AnimatePresence>
 		</section>
 	);
 }

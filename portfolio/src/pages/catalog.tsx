@@ -1,20 +1,27 @@
+import { GetStaticPropsContext } from 'next';
+
+import firestoreService, { Project } from '@/data/firestore';
 import CatalogBanner from '@/sections/catalog-banner';
 import CatalogFilteredProjects from '@/sections/catalog-filtered-projects';
-import { GetStaticPropsContext } from 'next';
-export default function CatalogPage() {
+
+type Props = { projects: Project[] };
+
+export default function CatalogPage({ projects }: Props) {
 	return (
 		<>
 			<CatalogBanner />
-			<CatalogFilteredProjects />
+			<CatalogFilteredProjects projects={projects} />
 		</>
 	);
 }
+
 export async function getStaticProps(context: GetStaticPropsContext) {
+	const [messages, projects] = await Promise.all([
+		import(`../../messages/${context.locale || 'fr'}.json`).then((m) => m.default),
+		firestoreService.getAllProjects(),
+	]);
 	return {
-		props: {
-			messages: (
-				await import(`../../messages/${context.locale || 'fr'}.json`)
-			).default,
-		},
+		props: { messages, projects },
+		revalidate: 3600,
 	};
 }

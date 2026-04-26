@@ -1,21 +1,15 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
-import firestoreService, { type Passion } from '@/data/firestore';
+import { type Passion } from '@/data/firestore';
 
-export default function Passions() {
+type Props = { passions: Passion[] };
+
+export default function Passions({ passions }: Props) {
 	const t = useTranslations();
 	const router = useRouter();
 	const locale = router.locale ?? 'fr';
-	const [passions, setPassions] = useState<Passion[]>([]);
-
-	useEffect(() => {
-		firestoreService.getAllPassions()
-			.then(setPassions)
-			.catch((error) => console.error('Erreur lors du chargement des passions:', error));
-	}, []);
 
 	return (
 		<section className="py-20">
@@ -27,10 +21,7 @@ export default function Passions() {
 			</p>
 			<div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{passions.map((passion) => (
-					<div
-						key={passion.id}
-						className="relative w-full h-44 mb-4"
-					>
+					<div key={passion.id} className="relative w-full h-44 mb-4">
 						<Image
 							src={passion.image}
 							alt={passion.name[locale as 'en' | 'fr']}
@@ -41,10 +32,7 @@ export default function Passions() {
 						/>
 						<h4
 							className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-bold drop-shadow-xs text-center z-10"
-							style={{
-								whiteSpace: 'wrap',
-								letterSpacing: '2px',
-							}}
+							style={{ whiteSpace: 'wrap', letterSpacing: '2px' }}
 						>
 							{passion.name[locale as 'en' | 'fr']}
 						</h4>
